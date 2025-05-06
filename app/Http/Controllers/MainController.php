@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\TesteModels;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
     public function index(){
         
-        $products = Product::all()->toArray();
+        $result = TesteModels::all()->toArray();
         echo "<pre>";
-        print_r($products);
+        print_r($result);
     }
 }
