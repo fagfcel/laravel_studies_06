@@ -56,6 +56,42 @@ class MainController extends Controller
         // echo '<br>';
 
 
+        // $product = Product::find(10);
+        // echo $product->product_name . "<br>";
+
+        // $product = Product::where('price', '>=', 70)->first();
+        // echo "Nome: ". $product->product_name . " Valor: ". $product->price . "<br>";
+        
+        // $product = Product::firstWhere('price', '>=', 70);
+        // echo "Nome: ". $product->product_name . " Valor: ". $product->price . "<br>";
+
+        // $product = Product::findOr(100, function(){
+        //     echo "Produto não encontrado!";
+        // });
+        // if($product){
+        //     echo "Nome: ". $product->product_name . " Valor: ". $product->price . "<br>";
+        // }
+
+        // $product = Product::findOrFail(120);
+        // echo "Nome: ". $product->product_name . " Valor: ". $product->price . "<br>";
+
+        $total_produtos = Product::count();
+        $pruduct_max_price = Product::max('price');
+        $pruduct_min_price = Product::min('price');
+        $pruduct_avg_price = Product::avg('price');
+        $pruduct_sum_price = Product::sum('price');
+
+        $result = [
+            'total_produtos' => $total_produtos,
+            'pruduct_max_price' => $pruduct_max_price,
+            'pruduct_min_price' => $pruduct_min_price,
+            'pruduct_avg_price' => $pruduct_avg_price,
+            'pruduct_sum_price' => $pruduct_sum_price
+
+        ];
+
+        $this->showData($result);
+
 
     }
 
