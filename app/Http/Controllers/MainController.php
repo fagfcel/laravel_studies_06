@@ -139,10 +139,35 @@ class MainController extends Controller
         //     );
 
         //atualizar se existir ou criar novo
-        Product::updateOrCreate(
-            ['product_name' => 'XAROPE'],
-            ['price'    =>  25]
-        );
+        // Product::updateOrCreate(
+        //     ['product_name' => 'XAROPE'],
+        //     ['price'    =>  25]
+        // );
+        //-------------------------------------------------
+        // DELETE = hard delete
+        //-------------------------------------------------
+        // $product = Product::find(10);
+        // $product->delete();
+
+        //deletar toda a tabela e resetar o auto incremento id
+        // Product::truncate();
+
+        // Product::destroy(1);
+        // Product::destroy(1, 3, 5);
+        // Product::destroy([2, 4, 6]);
+
+        // Product::where('price', '>=', 70)->delete();
+        
+        //------------------------------------------------
+        // SOFTDELETE
+        //------------------------------------------------
+        // $product = Product::find(25);
+        // $product->delete();
+
+        // recuperar produto com soft delete
+        $product = Product::withTrashed()->find(25);
+        $product->restore();
+
     }
 
     private function showData($data){
