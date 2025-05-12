@@ -36,13 +36,57 @@ class MainController extends Controller
         // echo "<hr>";
         
         //buscar todos os clientes e seus telefone na relação de um para um
-        $clients = Client::with('phone')->get();
-        foreach ($clients as $client){
-        echo "ID: ". $client->id;
-        echo " | Nome do Cliente: ". $client->client_name;
-        echo " | Telefone do cliente: ". $client->phone->phone_number;;
-        echo "<hr>";
+        // $clients = Client::with('phone')->get();
+        // foreach ($clients as $client){
+        // echo "ID: ". $client->id;
+        // echo " | Nome do Cliente: ". $client->client_name;
+        // echo " | Telefone do cliente: ". $client->phone->phone_number;;
+        // echo "<hr>";
+        // }
+    }
+
+    public function OneToMany(){
+
+        // nbuscar id , nome e todos os telefones do cliente
+        // $client1 = Client::find(10);
+        // $phones = $client1->phones;
+        // echo "ID: ". $client1->id . "<br>";
+        // echo "ID: ". $client1->client_name . "<br>";
+        // $count=0;
+        // foreach($phones as $phone)
+        // {
+        //     echo "Phone ". ++$count . ": ". $phone->phone_number ."<br>";
+        // }
+        // echo "<hr>";
+        
+        
+        //busca usando o with
+        // $client2 = Client::with('phones')->find(10);
+        
+        // echo "ID: ". $client2->id . "<br>";
+        // echo "ID: ". $client2->client_name . "<br>";
+        // $count=0;
+        // foreach($client2->phones as $phone)
+        // {
+        //     echo "Phone ". ++$count . ": ". $phone->phone_number ."<br>";
+        // }
+        // echo "<hr>";
+        
+        //vamos buscar todos os clientes e seus telefones
+        $clients = Client::with('phones')->get();
+        
+        foreach($clients as $client)
+        {
+            echo "ID: ". $client->id . "<br>";
+            echo "ID: ". $client->client_name . "<br>";
+            $count=0;
+            foreach($client->phones as $phone)
+            {
+                echo "Phone ". ++$count . ": ". $phone->phone_number ."<br>";
+            }
+            echo "<hr>";
         }
+
     }
 
     private function showData($data){
