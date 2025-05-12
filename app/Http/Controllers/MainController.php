@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Phone;
 
 class MainController extends Controller
 {
@@ -87,6 +88,22 @@ class MainController extends Controller
             echo "<hr>";
         }
 
+    }
+
+    public function BelongsTo(){
+        //neste metodo vamos descobrir o cliente a partir do telefone
+        // $phone1 = Phone::find(10);
+        // $client1 = $phone1->client;
+        // echo "Telefone: ". $phone1->phone_number . "<br>";
+        // echo "Cliente: ". $client1->client_name;
+        // echo "<hr>";
+        
+        //neste metodo usando o with vamos descobrir o cliente a partir do telefone
+        $phone2 = Phone::with('client')->find(10);
+        echo "Telefone: ". $phone2->phone_number . "<br>";
+        echo "Cliente: ". $phone2->client->client_name;
+        echo "<hr>";
+        
     }
 
     private function showData($data){
