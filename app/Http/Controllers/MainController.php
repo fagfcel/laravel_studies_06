@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -75,23 +76,55 @@ class MainController extends Controller
         // $product = Product::findOrFail(120);
         // echo "Nome: ". $product->product_name . " Valor: ". $product->price . "<br>";
 
-        $total_produtos = Product::count();
-        $pruduct_max_price = Product::max('price');
-        $pruduct_min_price = Product::min('price');
-        $pruduct_avg_price = Product::avg('price');
-        $pruduct_sum_price = Product::sum('price');
+        // $total_produtos = Product::count();
+        // $pruduct_max_price = Product::max('price');
+        // $pruduct_min_price = Product::min('price');
+        // $pruduct_avg_price = Product::avg('price');
+        // $pruduct_sum_price = Product::sum('price');
 
-        $result = [
-            'total_produtos' => $total_produtos,
-            'pruduct_max_price' => $pruduct_max_price,
-            'pruduct_min_price' => $pruduct_min_price,
-            'pruduct_avg_price' => $pruduct_avg_price,
-            'pruduct_sum_price' => $pruduct_sum_price
+        // $result = [
+        //     'total_produtos' => $total_produtos,
+        //     'pruduct_max_price' => $pruduct_max_price,
+        //     'pruduct_min_price' => $pruduct_min_price,
+        //     'pruduct_avg_price' => $pruduct_avg_price,
+        //     'pruduct_sum_price' => $pruduct_sum_price
 
-        ];
+        // ];
 
-        $this->showData($result);
+        // $this->showData($result);
 
+        //inserindo produto na table product
+        // $new_product = new Product();
+        // $new_product->product_name = "Novo Produto";
+        // $new_product->price = 50;
+        // $new_product->save();
+
+        // Product::create([
+        //     'product_name' => 'Novo Produto 2',
+        //     'price' => 60
+        // ]);
+
+        Product::insert([
+            [
+                'product_name'  => 'Produto 4',
+                'price' => 40,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'product_name'  => 'Produto 5',
+                'price' => 50,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'product_name'  => 'Produto 6',
+                'price' => 60,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
+        ]);
 
     }
 
