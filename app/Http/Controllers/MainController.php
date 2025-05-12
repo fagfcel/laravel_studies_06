@@ -104,28 +104,45 @@ class MainController extends Controller
         //     'price' => 60
         // ]);
 
-        Product::insert([
-            [
-                'product_name'  => 'Produto 4',
-                'price' => 40,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'product_name'  => 'Produto 5',
-                'price' => 50,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'product_name'  => 'Produto 6',
-                'price' => 60,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
+        // Product::insert([
+        //     [
+        //         'product_name'  => 'Produto 4',
+        //         'price' => 40,
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'product_name'  => 'Produto 5',
+        //         'price' => 50,
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now()
+        //     ],
+        //     [
+        //         'product_name'  => 'Produto 6',
+        //         'price' => 60,
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now()
+        //     ],
 
-        ]);
+        // ]);
 
+        //UPDATE
+        // $product = Product::find(10);
+        // $product->product_name = 'PRODUTO ALTERADO';
+        // $product->price = 10;
+        // $product->save();
+
+        // Product::where('price', '<=', 10)->update(
+        //     [
+        //         'price' => 250
+        //     ]
+        //     );
+
+        //atualizar se existir ou criar novo
+        Product::updateOrCreate(
+            ['product_name' => 'XAROPE'],
+            ['price'    =>  25]
+        );
     }
 
     private function showData($data){
