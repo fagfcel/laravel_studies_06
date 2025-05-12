@@ -2,172 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Models\Client;
 
 class MainController extends Controller
 {
     public function index(){
-        //Buscando todos os dados de produtos
-        // $result = Product::all();
+        echo "Eloquent Relações";
 
-        //Buscar todos os dados em um array
-        // $result = Product::all()->toArray();
+    }
 
-        //retornar os resultados como um array de objetos stdClass
-        // $result = $this->ArrayOfObject(Product::all()->toArray());
+    public function OneToOne(){
+        echo "OneToOne";
+        echo "<hr>";
+        //buscar o telefone de um cliente
+        // $client1 = Client::find(12)->phone;
 
-        //buscar produdos ordenados pelo nome alfabeticamente
-        // $result = $this->ArrayOfObject(Product::orderBy('product_name')->get()->toArray());
+        // echo "ID: ". $client1->client_id  . " PHONE: ". $client1->phone_number;
+        // echo "<hr>";
 
-        //buscar os tês primeiros produtos ordenado pelo id
-        // $result = $this->ArrayOfObject(Product::limit(3)->get()->toArray());
-
-        // buscar produto por id
-        // $result = $this->ArrayOfObject(Product::find(10)->toArray());
-        // $this->showData($result);
-
-        //usar cláusula where
-        // $result = Product::where('price', '>=', 70)->get()->toArray();
-        // $this->showData($result);
-
-        //buscar apenas o primeiro
-        // $result = Product::where('price', '>=', 70)
-        //                     ->first()
-        //                     ->toArray();
-
-        //buscar apenas o primeiro elemento se ele existir, caso contrario retornar vazio
-        // $result = Product::where('price', '>=', 190)
-        //                    ->firstOr( function(){
-        //                     return [];
-        //                    });
-        // $this->showData($result);
-
-        // $product = Product::find(10);
-        // echo $product->price; // price da db
-        // echo '<br>';
+        //dados do cliente e seu telefone
+        // $client2 = Client::find(12);
+        // $phone = $client2->phone->phone_number;
+        // echo "ID: ". $client2->id;
+        // echo " | Nome do Cliente: ". $client2->client_name;
+        // echo " | Telefone do cliente: ". $phone;
+        // echo "<hr>";
         
-        // $product->price = 200;
-        // echo $product->price; // definir o novo preço apenas no codigo (não na db)
-        // echo '<br>';
+        //outra forma usando o metodo with
+        // $client3 = Client::with('phone')->find(12);
+        // echo "ID: ". $client3->id;
+        // echo " | Nome do Cliente: ". $client3->client_name;
+        // echo " | Telefone do cliente: ". $client3->phone->phone_number;;
+        // echo "<hr>";
         
-        // $product->refresh();
-        // echo $product->price; // recupera o valor da db
-        // echo '<br>';
-
-
-        // $product = Product::find(10);
-        // echo $product->product_name . "<br>";
-
-        // $product = Product::where('price', '>=', 70)->first();
-        // echo "Nome: ". $product->product_name . " Valor: ". $product->price . "<br>";
-        
-        // $product = Product::firstWhere('price', '>=', 70);
-        // echo "Nome: ". $product->product_name . " Valor: ". $product->price . "<br>";
-
-        // $product = Product::findOr(100, function(){
-        //     echo "Produto não encontrado!";
-        // });
-        // if($product){
-        //     echo "Nome: ". $product->product_name . " Valor: ". $product->price . "<br>";
-        // }
-
-        // $product = Product::findOrFail(120);
-        // echo "Nome: ". $product->product_name . " Valor: ". $product->price . "<br>";
-
-        // $total_produtos = Product::count();
-        // $pruduct_max_price = Product::max('price');
-        // $pruduct_min_price = Product::min('price');
-        // $pruduct_avg_price = Product::avg('price');
-        // $pruduct_sum_price = Product::sum('price');
-
-        // $result = [
-        //     'total_produtos' => $total_produtos,
-        //     'pruduct_max_price' => $pruduct_max_price,
-        //     'pruduct_min_price' => $pruduct_min_price,
-        //     'pruduct_avg_price' => $pruduct_avg_price,
-        //     'pruduct_sum_price' => $pruduct_sum_price
-
-        // ];
-
-        // $this->showData($result);
-
-        //inserindo produto na table product
-        // $new_product = new Product();
-        // $new_product->product_name = "Novo Produto";
-        // $new_product->price = 50;
-        // $new_product->save();
-
-        // Product::create([
-        //     'product_name' => 'Novo Produto 2',
-        //     'price' => 60
-        // ]);
-
-        // Product::insert([
-        //     [
-        //         'product_name'  => 'Produto 4',
-        //         'price' => 40,
-        //         'created_at' => Carbon::now(),
-        //         'updated_at' => Carbon::now()
-        //     ],
-        //     [
-        //         'product_name'  => 'Produto 5',
-        //         'price' => 50,
-        //         'created_at' => Carbon::now(),
-        //         'updated_at' => Carbon::now()
-        //     ],
-        //     [
-        //         'product_name'  => 'Produto 6',
-        //         'price' => 60,
-        //         'created_at' => Carbon::now(),
-        //         'updated_at' => Carbon::now()
-        //     ],
-
-        // ]);
-
-        //UPDATE
-        // $product = Product::find(10);
-        // $product->product_name = 'PRODUTO ALTERADO';
-        // $product->price = 10;
-        // $product->save();
-
-        // Product::where('price', '<=', 10)->update(
-        //     [
-        //         'price' => 250
-        //     ]
-        //     );
-
-        //atualizar se existir ou criar novo
-        // Product::updateOrCreate(
-        //     ['product_name' => 'XAROPE'],
-        //     ['price'    =>  25]
-        // );
-        //-------------------------------------------------
-        // DELETE = hard delete
-        //-------------------------------------------------
-        // $product = Product::find(10);
-        // $product->delete();
-
-        //deletar toda a tabela e resetar o auto incremento id
-        // Product::truncate();
-
-        // Product::destroy(1);
-        // Product::destroy(1, 3, 5);
-        // Product::destroy([2, 4, 6]);
-
-        // Product::where('price', '>=', 70)->delete();
-        
-        //------------------------------------------------
-        // SOFTDELETE
-        //------------------------------------------------
-        // $product = Product::find(25);
-        // $product->delete();
-
-        // recuperar produto com soft delete
-        $product = Product::withTrashed()->find(25);
-        $product->restore();
-
+        //buscar todos os clientes e seus telefone na relação de um para um
+        $clients = Client::with('phone')->get();
+        foreach ($clients as $client){
+        echo "ID: ". $client->id;
+        echo " | Nome do Cliente: ". $client->client_name;
+        echo " | Telefone do cliente: ". $client->phone->phone_number;;
+        echo "<hr>";
+        }
     }
 
     private function showData($data){
