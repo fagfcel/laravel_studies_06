@@ -159,6 +159,26 @@ class MainController extends Controller
 
     }
 
+    public function SameResolts(){
+
+        // $client1 = Client::find(1);
+        // $phones = Phone::where('client_id', $client1->id)->get();
+        // echo 'Cliente: '. $client1->client_name . '<br>';
+        // echo 'Telefones: <br>';
+        // foreach($phones as $phone){
+        //     echo $phone->phone_number . '<br>';
+        // }
+
+        $client1 = Client::find(1);
+        $products = Product::join('orders', 'products.id', 'orders.product_id',)->where('orders.client_id', $client1->id)->get();
+         echo 'Cliente: '. $client1->client_name . '<br>';
+        echo 'Produtos: <br>';
+        foreach($products as $product){
+            echo $product->product_name . "\tprice: R$" . $product->price . '<br>';
+        }
+        
+    }
+
     private function showData($data){
         echo "<pre>";
         print_r($data);
