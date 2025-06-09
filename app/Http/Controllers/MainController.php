@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Phone;
+use App\Models\Product;
 
 class MainController extends Controller
 {
@@ -89,6 +90,29 @@ class MainController extends Controller
         }
 
     }
+    public function ManyToMany(){
+        //buscar um cliente e todos os seus produtos comprados
+        // $client = Client::find(1);
+        // $products = $client->products;
+        // echo 'Cliente: ' . $client->client_name.'<br>';
+        // echo 'Produtos: <br>';
+        // foreach ($products as $product)
+        // {
+        //     echo $product->product_name . '<br>';
+        // }
+
+        //buscar todos os clientes que compraram um determinado produto
+        $product1 = Product::find(1);
+        $clients = $product1->clients;
+        
+        echo 'Produto: ' . $product1->product_name.'<br>';
+        echo 'Clientes: <br>';
+        
+        foreach ($clients as $client)
+        {
+            echo $client->client_name . '<br>';
+        }
+    }
 
     public function BelongsTo(){
         //neste metodo vamos descobrir o cliente a partir do telefone
@@ -99,10 +123,10 @@ class MainController extends Controller
         // echo "<hr>";
         
         //neste metodo usando o with vamos descobrir o cliente a partir do telefone
-        $phone2 = Phone::with('client')->find(10);
-        echo "Telefone: ". $phone2->phone_number . "<br>";
-        echo "Cliente: ". $phone2->client->client_name;
-        echo "<hr>";
+        // $phone2 = Phone::with('client')->find(10);
+        // echo "Telefone: ". $phone2->phone_number . "<br>";
+        // echo "Cliente: ". $phone2->client->client_name;
+        // echo "<hr>";
         
     }
 
