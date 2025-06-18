@@ -220,6 +220,39 @@ class MainController extends Controller
 
     }
 
+    public function Serialization(){
+
+        // $clients = Client::take(10)->get();
+        // $clients = $clients->toArray();
+        // $this->showData($clients);
+
+        // $clients = Client::take(10)->get()->toArray();
+        // $this->showData($clients);
+
+        // $client = Client::find(1)->toArray();
+        // $this->showData($client);
+
+        // $clients = Client::take(10)->get();
+        // $clients = $clients->toJson();
+        // echo $clients;
+
+        // $clients = Client::take(10)->get()->toJson(JSON_PRETTY_PRINT);
+        // echo '<pre>';
+        // echo $clients;
+
+        // $clients = Client::take(10)
+        //                    ->get()
+        //                    ->setHidden(['id', 'active', 'created_at', 'updated_at', 'deleted_at'])
+        //                    ->toJson(JSON_PRETTY_PRINT);
+        // $this->showData($clients);
+
+        $clients = Client::take(10)
+                           ->get()
+                           ->setVisible(['client_name','email'])
+                           ->toJson(JSON_PRETTY_PRINT);
+        $this->showData($clients);
+
+    }
     private function showData($data){
         echo "<pre>";
         print_r($data);
